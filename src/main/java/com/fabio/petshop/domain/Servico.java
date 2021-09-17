@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -25,17 +27,27 @@ public class Servico implements Serializable{
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "servico")
 	private Pagamento pagamento;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_cliente")
+	private Cliente cliente;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_funcionario")
+	private Funcionario funcionario;
+	
+	
 	public Servico() {
 		
 	}
 
-	public Servico(Integer id, Date dataEntrada, Date dataSaida, String descricao, Pagamento pagamento) {
+	public Servico(Integer id, Date dataEntrada, Date dataSaida, String descricao, Cliente cliente, Funcionario funcionario) {
 		super();
 		this.id = id;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
-		this.descricao = descricao;
-		this.pagamento = pagamento;
+		this.descricao = descricao;		
+		this.cliente = cliente;
+		this.funcionario = funcionario;
 	}
 
 	@Override
