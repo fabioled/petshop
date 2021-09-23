@@ -47,8 +47,4 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	
-
-	
-	
 }
